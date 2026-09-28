@@ -19,7 +19,7 @@ def get_neighbors(x,y,N)-> list:
     neighbors = []
     for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
         nx, ny = x + dx, y + dy
-        if 1 <= nx <= N and 1 <= ny <= N:
+        if 1 <= nx <= N and 1 <= ny <= N: #solo los vecinos que existen en el tablero (1-N)
             neighbors.append((nx,ny))
     return neighbors
 
@@ -58,8 +58,8 @@ def generate_rules(N) -> list:
             b_var = id_var('Breeze', x, y) #Devuelve las casillas donde hay brisa
             well = [id_var('Well', vx, vy) for vx, vy in neighbors] 
 
-            rules.append([-b_var] + well)
-            for pozo in well:
+            rules.append([-b_var] + well) #(¬B v P1 v P2)
+            for pozo in well: #(¬Pn v B)
                 rules.append([-pozo] + [b_var])
 
             # Rules for Reek (Reek <=> (Wumpus1, Wumpus2...))
