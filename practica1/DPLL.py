@@ -18,7 +18,7 @@ def clause_status(clause, learned):
             continue
         unknown = True
     if unknown:
-        return None
+        return None #la clausula todavía no se corta
     return False
 
 def choose_variable(clauses, assignment):
